@@ -6,8 +6,8 @@ import api from '~/Services/api';
 
 export default function AvatarInput() {
   const { defaultValue, registerField } = useField('avatar');
-  const [preview, setPreview] = useState(defaultValue && defaultValue.url);
   const [file, setFile] = useState(defaultValue && defaultValue.id);
+  const [preview, setPreview] = useState(defaultValue && defaultValue.url);
   const ref = useRef();
 
   async function handleChange(e) {
@@ -15,9 +15,20 @@ export default function AvatarInput() {
     formdata.append('file', e.target.files[0]);
     const response = await api.post('files', formdata);
     const { id, url } = response.data;
-    setFile(url);
-    setPreview(id);
+
+    setFile(id);
+    setPreview(url);
   }
+
+  useEffect(() => {
+    if (ref.current) {
+      registerField({
+        name: 'avatar_id',
+        ref: ref.current,
+        path: 'dataset.file',
+      });
+    }
+  }, [ref, registerField]);
 
   return (
     <Container>
