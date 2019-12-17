@@ -8,7 +8,7 @@ export function* updateProfile({ payload }) {
     const { name, email, avatar_id, ...rest } = payload.data;
 
     // const profile = Object.assign(
-    //   { name, email },
+    //   { name, email,avatar_id },
     //   rest.oldPassword ? rest : {}
     // );
 

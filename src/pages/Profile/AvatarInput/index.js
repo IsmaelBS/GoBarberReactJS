@@ -23,12 +23,12 @@ export default function AvatarInput() {
   useEffect(() => {
     if (ref.current) {
       registerField({
-        name: 'avatar_id',
-        ref: ref.current,
         path: 'dataset.file',
+        ref: ref.current,
+        name: 'avatar_id',
       });
     }
-  }, [ref, registerField]);
+  }, []);
 
   return (
     <Container>
@@ -44,7 +44,7 @@ export default function AvatarInput() {
           id="avatar"
           accept="image/*"
           data-file={file}
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
           ref={ref}
         />
       </label>

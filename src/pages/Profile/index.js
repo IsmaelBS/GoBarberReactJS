@@ -3,6 +3,7 @@ import { Form, Input } from '@rocketseat/unform';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container } from './styles';
 import { updateProfileRequest } from '~/store/modules/user/actions';
+import { signOutRequest } from '~/store/modules/auth/actions';
 import AvatarInput from './AvatarInput';
 
 export default function Profile() {
@@ -10,6 +11,10 @@ export default function Profile() {
 
   function handleSubmit(data) {
     dispatch(updateProfileRequest(data));
+  }
+
+  function handleSignOut() {
+    dispatch(signOutRequest());
   }
 
   const profile = useSelector(state => state.user.profile);
@@ -34,7 +39,9 @@ export default function Profile() {
         />
         <button type="submit">Atualizar Perfil</button>
       </Form>
-      <button type="button">Sair do GoBarber</button>
+      <button onClick={() => handleSignOut()} type="button">
+        Sair do GoBarber
+      </button>
     </Container>
   );
 }
