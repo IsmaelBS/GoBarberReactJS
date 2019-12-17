@@ -28,7 +28,7 @@ export default function AvatarInput() {
         name: 'avatar_id',
       });
     }
-  }, []);
+  }, [ref]); // eslint-disable-line
 
   return (
     <Container>
